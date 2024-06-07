@@ -5,12 +5,17 @@
 
 interface NavigateToOptions {
   url: "/pages/index/index" |
-       "/pages/about/about";
+       "/pages/about/about" |
+       "/pages/wrsign/index" |
+       "/pages-sub/demo/index" |
+       "/pages-sub/wrsign/campus" |
+       "/pages-sub/wrsign/class" |
+       "/pages-sub/wrsign/course_detail";
 }
 interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
-  url: "/pages/index/index" | "/pages/about/about"
+  url: "/pages/wrsign/index" | "/pages/index/index" | "/pages/about/about"
 }
 
 type ReLaunchOptions = NavigateToOptions | SwitchTabOptions;

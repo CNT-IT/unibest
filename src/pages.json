@@ -26,6 +26,12 @@
       {
         "iconPath": "static/tabbar/home.png",
         "selectedIconPath": "static/tabbar/homeHL.png",
+        "pagePath": "pages/wrsign/index",
+        "text": "报名"
+      },
+      {
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/homeHL.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
@@ -52,7 +58,36 @@
       "style": {
         "navigationBarTitleText": "关于"
       }
+    },
+    {
+      "path": "pages/wrsign/index",
+      "type": "page"
     }
   ],
-  "subPackages": []
+  "subPackages": [
+    {
+      "root": "pages-sub",
+      "pages": [
+        {
+          "path": "demo/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "分包页面 标题"
+          }
+        },
+        {
+          "path": "wrsign/campus",
+          "type": "page"
+        },
+        {
+          "path": "wrsign/class",
+          "type": "page"
+        },
+        {
+          "path": "wrsign/course_detail",
+          "type": "page"
+        }
+      ]
+    }
+  ]
 }

@@ -29,6 +29,12 @@ export default defineUniPages({
       {
         iconPath: 'static/tabbar/home.png',
         selectedIconPath: 'static/tabbar/homeHL.png',
+        pagePath: 'pages/wrsign/index',
+        text: '报名',
+      },
+      {
+        iconPath: 'static/tabbar/home.png',
+        selectedIconPath: 'static/tabbar/homeHL.png',
         pagePath: 'pages/index/index',
         text: '首页',
       },

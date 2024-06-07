@@ -54,7 +54,7 @@ export default ({ command, mode }) => {
         routeBlockLang: 'json5', // 虽然设了默认值，但是vue文件还是要加上 lang="json5", 这样才能很好地格式化
         // homePage 通过 vue 文件的 route-block 的type="home"来设定
         // pages 目录为 src/pages，分包目录不能配置在pages目录下
-        // subPackages: ['src/pages-sub'], // 是个数组，可以配置多个，但是不能为pages里面的目录
+        subPackages: ['src/pages-sub'], // 是个数组，可以配置多个，但是不能为pages里面的目录
         dts: 'src/types/uni-pages.d.ts',
       }),
       UniLayouts(),
@@ -84,13 +84,13 @@ export default ({ command, mode }) => {
       },
       // 打包分析插件，h5 + 生产环境才弹出
       UNI_PLATFORM === 'h5' &&
-        mode === 'production' &&
-        visualizer({
-          filename: './node_modules/.cache/visualizer/stats.html',
-          open: true,
-          gzipSize: true,
-          brotliSize: true,
-        }),
+      mode === 'production' &&
+      visualizer({
+        filename: './node_modules/.cache/visualizer/stats.html',
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
     ],
     define: {
       __UNI_PLATFORM__: JSON.stringify(UNI_PLATFORM),
@@ -120,19 +120,20 @@ export default ({ command, mode }) => {
       // 仅 H5 端生效，其他端不生效（其他端走build，不走devServer)
       proxy: JSON.parse(VITE_APP_PROXY)
         ? {
-            [VITE_APP_PROXY_PREFIX]: {
-              target: VITE_SERVER_BASEURL,
-              changeOrigin: true,
-              rewrite: (path) => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
-            },
-          }
+          [VITE_APP_PROXY_PREFIX]: {
+            target: VITE_SERVER_BASEURL,
+            changeOrigin: true,
+            rewrite: (path) => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
+          },
+        }
         : undefined,
     },
     build: {
       // 方便非h5端调试
       sourcemap: VITE_SHOW_SOURCEMAP === 'true', // 默认是false
       target: 'es6',
-      minify: 'terser',
+      // 开发环境不用压缩
+      minify: mode === 'development' ? false : 'terser',
       terserOptions: {
         compress: {
           drop_console: VITE_DELETE_CONSOLE === 'true',
